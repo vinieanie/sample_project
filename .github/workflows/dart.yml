@@ -1,13 +1,24 @@
-name: CI
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart CI
+
 on:
+  push:
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
-  flutter_test:
-    name: Run flutter test and analyze
+  build:
     runs-on: ubuntu-latest
+    
+    container:
+      image: google/dart:latest
+
+ 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
@@ -19,35 +30,4 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-
-  build_ios:
-    name: Build Flutter (iOS)
-    needs: [flutter_test]
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: flutter pub get
-      - run: flutter clean
-      - run: flutter build ios --release --no-codesign
-
-  build_appbundle:
-    name: Build Flutter (Android)
-    needs: [flutter_test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: flutter pub get
-      - run: flutter clean
-      - run: flutter build appbundle
+      - run: flutter build apk
