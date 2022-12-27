@@ -29,8 +29,8 @@ workflows:
     publishing:
       email:
         recipients:
-          - vinithomas6@gmail.com
-          
+          - user_1@example.com
+          - user_2@example.com
         notify:
           success: true
           failure: false
