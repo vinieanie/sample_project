@@ -25,6 +25,10 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build apk
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload APK
@@ -32,8 +36,4 @@ jobs:
         with:
           name: app
           path: app/build/app/outputs/apk/debug/app-debug.apk
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
-      - run: flutter build apk
 
