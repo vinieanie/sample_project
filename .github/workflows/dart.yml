@@ -7,7 +7,7 @@ name: Dart CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ] [dev_sample]
   pull_request:
     branches: [ master ]
 
