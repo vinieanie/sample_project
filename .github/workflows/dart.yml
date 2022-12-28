@@ -29,3 +29,8 @@ jobs:
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
