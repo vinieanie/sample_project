@@ -7,9 +7,9 @@ name: Dart CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev_sample ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev_sample ]
 
 jobs:
   build:
@@ -29,3 +29,8 @@ jobs:
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: app
+          path: build/app/outputs/apk/debug/app-debug.apk
