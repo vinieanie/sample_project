@@ -7,9 +7,9 @@ name: Dart CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev_sample ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev_sample ]
 
 jobs:
   build:
